@@ -1,0 +1,532 @@
+@charset "utf-8";
+@import url(./reset.css);
+/* 외부CSS 장착 */
+/* 폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Yusei+Magic&display=swap');
+/* 
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Yusei Magic', sans-serif;
+*/
+html{
+    /* overflow-x: hidden; */
+    font-family: 'Montserrat', sans-serif;
+}
+/* 기능주는 클래스 */
+.black {
+    color : #333;
+}
+.page,.bx {
+    width: 100vw;
+    height: 100vh;
+}
+body *{
+    /* outline: 1px dotted red; */
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+
+/* nav바 시작 */
+.nav{
+    position: fixed;
+    width: 100vw;
+    /* 잠시변경 서브페이지 만들기위해 만들면 -10%으로 */
+    top: -10%;
+    transition: top 1s ease-in-out,opacity 1s ease-in-out;
+    /* nav flex박스 */
+    display: flex;
+    /* 박스크기 */
+    height: 120px;
+
+    /* 플렉스정렬 */
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    /* 잠시변경 서브페이지만들기위해 만들고나면 0 으로 */
+    opacity: 0;
+    color: #fff;
+}
+.nav.on{
+    top: 0%;
+    opacity: 1;
+}
+/* 가상요소로 서브메뉴창 만들기 */
+.nav >ul> li::before{
+    content: '';
+    position: absolute;
+    display: block;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    height: 0;
+    width: 100%;
+    background-color: #fff ; 
+    transition: all .3s ease-in;
+}
+/* 오버시 가상요소서브메뉴창 열기 */
+.nav >ul:hover> li::before{
+    display: block;
+    height: 400px;
+    transition-duration: .3s;
+}
+/* ul오버시 nav에 밑줄표시 */
+.nav >ul:hover::before{
+    border-bottom: 1px solid #ccc;
+}
+.nav >ul::before{
+    position: absolute;
+    content: '';
+    display: block;
+    width: 100%;
+    border-bottom: 0px solid #ccc;
+    left: 0;
+    top: 120px;
+    transition:  .2s;
+}
+/* nav 로고 */
+.logo img {
+    opacity: 0;
+    margin-left: 50px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    transition:.3s;
+}
+/* 이미지에 온을 주면! */
+.logo img.on{
+    opacity: 1;
+}
+.nav> ul{
+    /* nav안의 ul flex박스 */
+    display: flex;
+    width: 60%;
+    justify-content: center;
+    transition: .3s;
+}
+/* ul오버시 li들 패딩줘서 넓어지게하기 */
+.nav>ul:hover>li{
+    padding: 0 1vw;
+    transition: all .4s;
+}
+
+/* 가상요소배경펼쳐질떄 a태그 기본색변경 */
+.nav> ul:hover a{
+    color: #333;
+}
+
+/* 서브메뉴 펼쳐지기 높이설정 및 자연스럽게 보이게 */
+.nav> ul:hover >li .smenu{
+    height: 260px;
+    transition: 0.2s ease-in-out .2s;
+}
+/* 서브메뉴오버시 글자색변경 */
+.smenu li:hover a{
+    color: #00afeb;
+}
+/* 서브메뉴오버시 밑줄색 */
+.smenu li:hover a span{
+    border-bottom: 1px solid #00afeb;
+}
+/* 가상요소 배경 펼쳐질떄 서브메뉴도 넓어지게 */
+.nav ul:hover li .smenu a{
+    padding: 0 1.5vw;
+}
+
+/* nav a글자 설정 */
+.nav ul >li >a{
+    color: #fff;
+    font-weight: bold;
+    font-size: min(15px,.8vw);
+    display: block;
+    /* width: 150px; */
+    line-height:120px;
+    text-align: center;
+    transition: all .4s;
+}
+/* 서브메뉴 a글자 설정 */
+.smenu a{
+    color: #fff;
+    font-weight: bold;
+    font-size: min(15px,.8vw);
+    text-align: center;
+    display: block;
+    line-height: min(30px,3vw);
+}
+.smenu >li:first-child{
+    padding-top: 20px;
+}
+.nav ul>li{
+    /* flex: 1; */
+    /* padding: 0 1vw; */
+    width: 15%;
+    transition: .3s;
+}
+.ubtn{
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.192);
+    z-index: 99999999999;
+}
+/* 버튼위치이동 */
+.btn {
+    font-size: 40px;
+    position: absolute;
+    top: 50%;
+    right: 3%;
+    transform: translateY(-50%);
+    padding-right: 15px;
+}
+.smbx{
+    position: relative;
+}
+/* 서브메뉴 */
+.smenu{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    
+    line-height: min(30px,2vw);
+    height: 0;
+    overflow: hidden;
+}
+/* 가상요소로 밑줄만들기 */
+.nav> ul> li a::after{
+    position: relative;
+    z-index: 1;
+    content: '';
+    display: block;
+    margin-top: 1px;
+    /* 변경속성 width */
+    width: 0%;
+    margin-left: 50%;
+    height: 3px;
+    background-color: #00afeb;
+    /* 트랜지션: 속시이지 */
+    transition: all .3s;
+}
+/* 오버시 바 보이기 */
+.nav> ul> li:hover>a::after{
+    width: 100%;
+    margin-left: 0%; 
+}
+/* 탭버튼 트랜지션 */
+.tbtn {
+    transition:  .3s;
+}
+
+/* nav 끝 */
+
+
+/* sitemap 시작 */
+.sitemap{
+    /* display: none; */
+    opacity: 0;
+    color: white;
+    background-color: #000;
+    position: fixed;
+    top: 0;
+    left: 100%;
+    z-index: 999;
+    width: 100%;
+    height: 100vh;
+    transition: left .5s ease-in-out;
+}
+.sitemap.show{
+    /* display: block; */
+    opacity: 1;
+    left: 0%;
+}
+.sitemap_main{
+    opacity: 0;
+    position: fixed;
+    /* overflow-y: auto; */
+    width: 100vw;
+    top: 50%;
+    height: 100vh;
+    transform: translateY(-50%);
+    max-width: 1515px;
+    margin: 0 auto;
+    transition: opacity .5s .5s ease-in-out;
+}
+.sitemap.show .sitemap_main{
+    opacity: 1;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 1515px;
+    margin: 0 auto;
+}
+.sitemap_top ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.sitemap h2{
+    font-size: min(60px,5vw);
+    font-weight: bold;
+}
+.sitemap dl{
+    padding: min(70px,7vw) min(25px,2.3vw);
+    border-left: 1px solid rgb(255, 255, 255,0.1);
+    margin-top: 75px;
+    flex: 1;
+}
+.sitemap dt{
+    font-size: min(30px,2.3vw);
+    font-weight: bold;
+    margin-bottom: 2em;
+}
+.sitemap dd{
+    font-size: min(17px,1.3vw);
+    padding: 1em 0;
+}
+.sitemap a{
+    color: #fff;
+}
+.sitemap_cont{
+    display: flex;
+}
+/* 사이트맵 x 버튼 */
+.sitemap_btn{
+    font-size: 40px;
+    margin-right: 15px;
+}
+.sitewrap{
+    padding: 150px 50px;
+}
+
+
+
+/* 사이트맵 끝 */
+
+/* 페이지2의 버튼 */
+.p2btn{
+    display: none;
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    bottom: 20px;
+    right: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    
+}
+
+/* 컨택버튼 */
+
+.ctbtn{
+    position: fixed;    
+    bottom: 4%;
+    right: 2%;
+    width: min(60px,5vw);
+    min-width: 40px;
+    min-height: 40px;
+    height:min(60px,5vw);
+    transition: .4s ease-in-out;
+    z-index: 1;
+    cursor: pointer;
+}
+.on.ctbtn{
+    bottom:12%
+}
+.ctcircle{
+    border-radius: 50%;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: min(60px,5vw);
+    min-width: 40px;
+    min-height: 40px;
+    height:min(60px,5vw);
+    background-color: #fff;
+    border-radius: 75px;
+    transition:  .3s;
+}
+.ctcircle div{
+    opacity: 0;
+    transform: translate(23%, 50%);
+    font-size: 16px;
+    font-weight: bold;
+}
+.cttxt{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 2rem;
+    transform: translate(-50%,-50%);
+    font-size: 2rem;
+    color: #333;
+
+}
+.ctbtn:hover .ctcircle{
+    width: 200px;
+}
+.ctbtn:hover .ctcircle div{
+    opacity: 1;
+}
+
+/* 위로가는버튼 */
+.upbtn{
+    position: fixed;
+    opacity: 1;
+    bottom: 4%;
+    right: 2%;
+    width: min(60px,5vw);
+    min-width: 40px;
+    min-height: 40px;
+    height:min(60px,5vw);
+    transition: .4s ease-in-out;
+    background-color: #fff;
+    font-size: 30px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 60px;
+    z-index: 9999999999;
+}
+.upbtn:hover i {
+    top: 45%;
+    font-weight: bold;font-size: 24px;
+}
+.upbtn i {
+    transition: .3s ease-in-out;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.on.upbtn{
+    opacity: 1;
+}
+
+
+/* 푸터시작 */
+
+/* 하단영역 시작 */
+#pg6{
+    max-height: 704px;
+    background-color: #fff;
+    padding: 0 30px;
+    min-width: 400px;
+}
+
+
+.ftcont{
+    margin: 0 auto;
+    padding: 8.8rem 3rem 0;
+    background-color: #fff;
+    border-top: 1px solid #eee;
+}
+.ftbx{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 80px;
+    border-bottom: 1px solid #eee;
+}
+.fttxt dl,.ftsns ul,.ftbt ul,.ftbt{
+    display: flex;
+}
+.fttxt {
+    font-size: min(16px,1.8vw);
+    width: 35%;
+    line-height: 1.8;
+    color: #333;
+}
+
+.fttxt dl+dl {
+    margin-top: 10px;
+    }
+.fttxt dl >dt{
+    flex-basis: 20%;
+}   
+.fttxt dl> dd{
+    flex-basis: 68%;
+}
+.ftdl{
+    display: flex;
+    justify-content: flex-end;
+}
+.ftdl dl{
+    flex-basis: 16%;
+    padding-right: 1rem;
+}
+.ftdl dt{
+    font-size: min(16px,1.5vw);
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+.ftdl dd{
+    font-size: min(15px,1.4vw);
+    margin-bottom: 1rem;
+    color: #999;
+}
+.ftdlbx{
+    width: 62%;
+}
+
+.ftbt p{
+    font-size: 1.4rem;
+}
+.ftbt ul li a{
+    font-size: 1.6rem;
+}
+.ftlogo{
+    margin-bottom: 6rem;
+}
+.ftbt{
+    justify-content: space-between;
+    padding: 60px 0;
+}
+.ftbt span {
+    font-size: 1.4rem;
+    color: #666;
+    font-weight: 500;
+}
+.ftbt ul li:last-child{
+    margin-left: 60px;
+}
+.ftbt ul li:last-child a{
+    color: #999;
+    /* padding-right: 20px; */
+}
+.ftsns{
+    margin-top: 76px;
+
+}
+.ftsns ul li{
+    margin-right: 15px;
+}
+.ftsns li div{
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background-color: #e3e3e3;
+    border-radius: 50%;
+}
+.ftsns li>div>a{
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 1.2rem;
+}
+/* 푸터끝 */
+
+/* 서브페이지 공통 */
+.spage1 h2{
+    font-size: 70px;
+    color: white;
+}
+.spage1 p{
+    font-size: 22px;
+    color: #fff;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 600px) {
+    .ftbt ul li:last-child{
+        margin-left: 0;
+        margin-top: 5px;
+    }
+}
