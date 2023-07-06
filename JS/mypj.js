@@ -19,9 +19,9 @@ window.addEventListener("resize", () => {
 
 window.addEventListener("DOMContentLoaded", () => {
     // 새로고침시 화면맨위로설정
-    setTimeout(()=>{
-        window.scrollTo(0,0);
-    },100) // 작동완료
+    // setTimeout(()=>{
+    //     window.scrollTo(0,0);
+    // },100) // 작동완료
     document.querySelector(".nav").classList.add("on");
     document.querySelector(".pob").classList.add("on");
     
@@ -31,16 +31,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // 데이터저장변수
     const h1 = ["BUSINESS", "About FESCARO", "Partnership", "Contact us"];
-
-    // (2) 인디케이터메뉴
-    // const indic = document.querySelectorAll('.indic a');
-    // console.log(indic);
-
-    // [ 이벤트 연결 함수등록하기 ] ////
-    // 인디케이터메뉴 이벤트연결
-    // indic.forEach((ele,idx)=>{//요소 , 순번
-    //     ele.addEventListener('click',()=>movePg(idx));
-    // }); // forEach ////
 
     // 변수 설정하기
     // 전체 페이지 변수
@@ -52,18 +42,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const page = qsa(".page");
     // 대상 page on주면 애니메이션
-    // const page = qsa('.page');
-    // 각 h1태그 출력칸
-    const s1 = qs(".stage1");
-    const s3 = qs(".stage3");
-    const s4 = qs(".stage4");
-    const s5 = qs(".stage5");
     const qor = 100;
     // 휠이벤트설정
     window.addEventListener("wheel", wheelFn, { passive: false });
     // 스크롤이벤트설정
     window.addEventListener("scroll", scrollFn, { passive: false });
-    console.log(qs('#pg1').innerHeight)
     const retVal = (x) => x.getBoundingClientRect().top;
 
 
@@ -256,7 +239,6 @@ window.addEventListener("DOMContentLoaded", () => {
             qs(".tbtn").style.color = "white";
             qs(".nav").classList.add("on");
 
-            pg2Action();
         }
         // 3페이지
         else if (pgnum === 2) {
@@ -316,9 +298,6 @@ window.addEventListener("DOMContentLoaded", () => {
             qs(".tbtn").style.color = "white";
         }
 
-        if (pgnum !== 1) {
-            compStop();
-        }
 
         // 컨택버튼과 업버튼 위치바꾸는 거
         let tg1 = document.querySelector(".ctbtn");
@@ -342,69 +321,6 @@ window.addEventListener("DOMContentLoaded", () => {
         if(pgnum > 0 && pgnum < 6) h1txt();
     } //updatePg 함수 ////
 
-    // 각 페이지마다 맞는 내용 한글자씩 설정된 함수들
-    // 페이지2텍스트 함수
-    // function p2h1txt() {
-    //     let hcode = ""; // 코드 저장변수
-    //     let idx = 0; //순번변수
-
-    //     for (let x of h1[0]) {
-    //         if (x === " ") x = "&nbsp;";
-    //         hcode += `
-    //     <h1 style = "transition-delay:${idx * 0.02}s">${x}</h1>
-    //     `;
-
-    //         idx++;
-    //     }
-    //     s1.innerHTML = hcode;
-    // }
-    // 페이지3 텍스트함수
-    // function p3h1txt() {
-    //     let hcode = ""; // 코드 저장변수
-    //     let idx = 0; //순번변수
-
-    //     for (let x of h1[1]) {
-    //         if (x === " ") x = "&nbsp;";
-    //         hcode += `
-    //     <h1 style = "transition-delay:${idx * 0.02}s">${x}</h1>
-    //     `;
-
-    //         idx++;
-    //     }
-    //     s3.innerHTML = hcode;
-    // }
-    // // 페이지4 텍스트함수
-    // function p4h1txt() {
-    //     let hcode = ""; // 코드 저장변수
-    //     let idx = 0; //순번변수
-
-    //     for (let x of h1[2]) {
-    //         if (x === " ") x = "&nbsp;";
-    //         hcode += `
-    //     <h1 style = "transition-delay:${idx * 0.02}s">${x}</h1>
-    //     `;
-
-    //         idx++;
-    //     }
-    //     s4.innerHTML = hcode;
-    // }
-    // // 페이지5 텍스트함수
-    // function p5h1txt() {
-    //     let hcode = ""; // 코드 저장변수
-    //     let idx = 0; //순번변수
-
-    //     for (let x of h1[3]) {
-    //         if (x === " ") x = "&nbsp;";
-    //         hcode += `
-    //     <h1 style = "transition-delay:${idx * 0.02}s">${x}</h1>
-    //     `;
-
-    //         idx++;
-    //     }
-    //     s5.innerHTML = hcode;
-    // }
-
-    // 각 그거를 줄이고 싶은데 미구현
     function h1txt () {
         let hcode =""
         let idx = 0;
@@ -417,238 +333,15 @@ window.addEventListener("DOMContentLoaded", () => {
             }
             qs('#pg'+(pgnum+1)).querySelector('.stage').innerHTML = hcode;
     }
-    // h1txt();
-    // 각 글자 한글자씩 출력해주는거 일단실행 opacity0처리되어있음
-    // page에 클래스 on주면 애니메이션있음
-    // p2h1txt();
-    // p3h1txt();
-    // p4h1txt();
-    // p5h1txt();
 
-    // 페이지 2 인터벌
 
-    // 대상 .bx3 ul 슬라이드박스
-    const p2slide = qs(".bx3slide");
-    // 대상 슬라이드의 li들
-    const p2slist = qsa(".bx3slide li");
-    // 대상 페이지 2의 버튼들
-    const p2btns = qsa(".p2btns div");
-    // 대상 게이지 .p2gage
-    const p2gage = qs(".p2gage");
-
-    // console.log(p2gage)
     // 기능 : 일정시간마다 왼쪽으로 -39%씩이동
     // 화살표를 누르면 맨끝사진을 다른맨끝으로 잘라서 넣은 후 방향에 맞게 이동
     // 기능 : 게이지가 인터벌시간동안 -114%에서 0으로 옴
 
-    // 광클금지변수 : 0 - 허용, 1 - 불허용
-    let qwer = 0;
 
-    // 2. 슬라이드 변경함수 만들기
-    // 호출시 seq에 들어오는 값중 1은 오른쪽, 0은 왼쪽
-    const goSlide = (seq) => {
-        // 광클금지 설정하기 //////
-        if (qwer) return;
-        qwer = 1; // 잠금!
-        setTimeout(() => {
-            qwer = 0; // 해제!
-        }, 400); /// 0.4초후 해제! ///
 
-        //  console.log("나,들어왔어!!!");
 
-        // 0. 현재의 슬라이드 li수집하기
-        let clist = document.querySelectorAll(".bx3slide li");
-        // clist -> current list 현재 리스트
-        // 1. 방향에 따른 분기
-        // 1-1. 오른쪽버튼 클릭시 ////////////////
-        if (seq) {
-            console.log("오른!");
-            reGage();
-            // 1. 슬라이드 이동전 먼저 잘라낸다!
-            // 이유: 슬라이드 순서를 왼쪽이동과 동일하게 함!
-            // 중앙확대 트랜지션 적용시 동작이 달라지므로!
-
-            // (1-1) 바깥에 나가있는 첫번째 슬라이드
-            //       li를 잘라서 맨뒤로 보낸다!
-            p2slide.appendChild(clist[0]);
-            // (1-2) 동시에 left값을 -110%으로 변경한다!
-            p2slide.style.left = "-117%";
-            // (1-3) 트랜지션 없애기!
-            p2slide.style.transition = "none";
-
-            // (2) 오른쪽 버튼 클릭시 다음 슬라이드가
-            //     나타나도록 슬라이드 박스의 left값을
-            //     -78%로 변경시킨다.
-
-            // [코드분리하기!] //////////////////////////
-            // -> 같은속성변경을 같은 메모리공간에서 수행하면
-            // 변경효과가 없음!!!
-            setTimeout(() => {
-                p2slide.style.left = "-156%";
-                p2slide.style.transition = "left .4s ease-in-out";
-            }, 10); //// 타임아웃 //////
-            // 시간에 0을쓰면 인터발호출시 트랜지션이 안먹히는 에러가 있음
-            // 1만써도 괜찮음
-        } //////////// if : 오른쪽클릭시 //////
-
-        // 1-2. 왼쪽버튼 클릭시 //////////////
-        else {
-            reGage();
-            console.log("왼쪽!");
-            // (1) 왼쪽버튼 클릭시 이전 슬라이드가
-            // 나타나도록 하기위해 우선 맨뒤 li를
-            // 맨앞으로 이동한다.
-            // slide.insertBefore(넣을놈,넣을놈전놈)
-            // slide.insertBefore(맨끝li,맨앞li)
-            p2slide.insertBefore(clist[clist.length - 1], clist[0]);
-
-            // (2) 동시에 left값을 -195%로 변경한다.
-            p2slide.style.left = "-195%";
-            // 이때 트랜지션을 없앤다(한번실행후 부터 생기므로!)
-            p2slide.style.transition = "none";
-
-            // (3) 그 후 left값을 -78%으로 애니메이션하여
-            // 슬라이드가 왼쪽에서 들어온다.
-            // 동일 속성인 left가 같은 코딩처리 공간에 동시에
-            // 있으므로 이것을 분리해야 효과가 있다!
-            // setTimeout을 사용한다!
-            setTimeout(() => {
-                p2slide.style.left = "-156%";
-                p2slide.style.transition = "left .4s ease-in-out";
-            }, 10); ////// 타임아웃 /////////
-        } //////////// else : 왼쪽클릭시 //////
-        // 2. 현재 슬라이드 순번과 같은 블릿표시하기
-        // 대상: .indic li -> indic변수
-        // 2-1. 현재 배너리스트 업데이트하기
-        // clist = p2slide.querySelectorAll("li");
-        // !!!!! 오른쪽이든 왼쪽이든 먼저 잘라내기 때문에
-        // 순번은 3번째로 일치함!!!!!!
-        // console.log("다시수집:",clist);
-
-        // 2-2.방향별 읽어올 슬라이드 순번으로 "data-seq"값 읽어오기
-        // 세번째 슬라이드가 주인공이니까 0,1,2 즉 2번을 쓰면됨!!!
-        // let cseq = clist[2].getAttribute("data-seq");
-        //  console.log("현재순번:", cseq);
-
-        // 2-3. 블릿초기화 - 불릿없음
-        // for (let x of indic) x.classList.remove("on");
-
-        // 2-4. 읽어온 슬라이드 순번의 블릿에 클래스 "on"넣기 -없음
-        // indic[cseq].classList.add("on");
-    }; ////////// goSlide함수 ///////////
-
-    // 3. 이동버튼대상에 이벤트 설정하기
-    p2btns.forEach((ele, idx) => {
-        ele.onclick = () => {
-            // 0. 기본이동막기
-            event.preventDefault();
-            // 1. 인터발지우기함수 호출!
-            setTimeout(() => goGage(), 5000);
-            clearAuto();
-            // 2. 슬라이드 함수 호출!
-            goSlide(idx);
-        }; ///// click함수 //////
-    }); /////// forEach //////////
-
-    // 인터발함수 지우기위한 변수
-    let autoI;
-    // 타임아웃함수 지우기위한 변수
-    let autoT;
-    // 인터발
-    let autoG;
-    let autoGt;
-
-    /************************************ 
-    함수명: autoSlide
-    기능: 인터발함수로 슬라이드함수 호출
-************************************/
-    function autoSlide() {
-        console.log("인터발시작!");
-        // 인터발함수로 슬라이드함수 호출하기
-        // autoI 는 3초후에 고슬라이드 우측을 실행해줘
-        autoI = setInterval(() => goSlide(1), 3000);
-        // autoG = setInterval(()=>goGage(),5000);
-    } ////////////// autoSlide함수 //////////
-
-    // 자동넘김 최초호출!
-    // autoSlide();
-
-    /************************************ 
-    함수명: clearAuto
-    기능: 인터발함수를 지우고 다시셋팅
-************************************/
-    function clearAuto() {
-        console.log("인터발멈춤!");
-        // 1. 인터발 지우기
-        clearInterval(autoI);
-        // clearInterval(autoG);
-        // 2. 타임아웃도 지우지 않으면
-        // 쌓여서 타임아웃 쓰나미실행이 발생한다!
-        clearTimeout(autoT);
-        // clearTimeout(autoGt);
-        // 3. 잠시후 다시 작동하도록 타임아웃으로
-        // 인터발함수를 호출한다!
-        // 5초후(인터발은 3초후, 토탈 8초후 작동시작)
-        // 5초뒤에 오토슬라이드(3초후에 슬라이드 우측으로가는거 실행)
-        autoT = setTimeout(autoSlide, 5000);
-        // autoGt = setTimeout(autoGage,5000);
-    } ///////// clearAuto 함수 /////////////
-
-    function reGage() {
-        console.log("게이지삭제");
-        p2gage.style.transition = "none";
-        p2gage.style.left = "-114%";
-    }
-    function goGage() {
-        console.log("게이지충전");
-        setTimeout(() => {
-            p2gage.style.transition = "3s ease-in-out";
-            p2gage.style.left = "0%";
-        }, 30);
-    }
-    function autoGage() {
-        console.log("자동게이지");
-        autoG = setInterval(() => goGage(), 3000);
-    }
-    function clearGage() {
-        console.log("오토게이지삭제");
-        clearInterval(autoG);
-        clearTimeout(autoGt);
-        autoGt = setTimeout(autoGage, 5000);
-    }
-    function compStop() {
-        console.log("오토게이지완전멈춤");
-        clearInterval(autoG);
-        clearInterval(autoI);
-        clearTimeout(autoGt);
-        clearTimeout(autoT);
-        setTimeout(resetSlide, 400);
-    }
-    // 최초 게이지
-    //
-    // goGage();
-    // autoGage();
-
-    function pg2Action() {
-        autoSlide();
-        goGage();
-        autoGage();
-    }
-
-    //../00.자료수집/02.이미지데이터/car1.jpg
-    // bx3slide
-
-    function resetSlide() {
-        let seq = 0;
-        let tgele = document.querySelector(".bx3slide");
-        tgele.querySelectorAll("img").forEach((ele, idx) => {
-            seq++;
-            if (seq === 5) seq = 1;
-            ele.setAttribute("src", `../00.자료수집/02.이미지데이터/car${seq}.jpg`);
-        });
-        tgele.style.left = "-156%";
-        p2gage.style.left = "-104%";
-    }
 
     // 사이트맵 버튼 이동 시작 //////////////////////////////////
 
@@ -714,42 +407,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // 완료
     // 로고 클릭시 페이지 새로고침 끝 ////
-
-    // 로고색 바뀌기! //////////////////////////////////////
-    // 기능 : nav ul에 마우스들어가면 로고이미지 1에 on빼고 로고이미지2에 on넣어주기, 마우스 빠지면 로고이미지2에 on뺴고 로고이미지에 1넣어주기
-
-    // 대상 : .nav ul
-    // const navul = qs('.nav ul')
-    // const navlia = qsa('.nav>ul>li>a');
-    // // 변경대상 : .logo img 2개
-    // const logoimg = qsa('.logo img')
-    // navul.onmouseenter= () => { // navul에 마우스를 올리면
-    //     console.log(logoimg[0])
-    //     console.log(logoimg[1])
-    //     if(logoimg[0].classList.contains('on')){ // 로고이미지가 흰색이라면
-    //         console.log('안녕')
-    //         logoimg[0].classList.remove('on');
-    //         logoimg[1].classList.add('on');
-    //     }
-    //     navlia.forEach((ele)=>{
-    //         console.log(ele)
-    //         if(ele.style.color=='white'){
-    //             ele.style.color = '#333'
-    //         }
-    //     })
-
-    // } // mouseenter ////
-    // navul.onmouseleave= () => {
-    //     // 시간차를 줘야할거같아서 0.3초 줌!
-    //     setTimeout(() => {
-    //         if(logoimg[1].classList.contains('on')){
-    //             logoimg[1].classList.remove('on');
-    //             logoimg[0].classList.add('on');
-    //         }
-    //     },300)
-    // } // mouseenter ////
-
-    // 완료! //
 
     // 로고색 바뀌기! 끝 //////////////////////////////////////
 
@@ -835,3 +492,170 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }; //mouseenter
 }); //로드구역 ///
+
+
+$(()=>{
+    // 슬라이드 39퍼씩 이동
+    // 게이지 -114 에서 0
+    // 슬라이드에서 5번째가 첫번째 보이는거
+    console.log('제이쿼리')
+    let slide = $('.bx3slide')
+
+    let prot = 0
+
+    function slidego(){
+        
+        // lclick()
+        $('.p2btns div').first().on('click',function(e){
+            console.log('왼쪽')
+            e.preventDefault()
+
+            if(prot) return;
+            prot = 1;
+            setTimeout(()=>{
+                prot = 0;
+            },1000)
+
+            lclick()
+
+            intervalClear()
+        })
+
+        // rclick
+        $('.p2btns div').last().on('click',function(e){
+            console.log('오른쪽')
+            e.preventDefault()
+
+            if(prot) return;
+            prot = 1;
+            setTimeout(()=>{
+                prot = 0;
+            },1000)
+            rclick()
+
+            intervalClear()
+        })
+    }
+
+
+    function lclick(){
+        // 슬라이드 오른쪽으로 이동시켜주시고
+        slide.css({
+            transition : '1s linear',
+            left : '-117%' 
+        })
+        // 4번째 보이는거에서 -1번째 밝게해주시고
+        $('.bx3 li').eq(3).css({
+            opacity : 1
+        })
+        // 4번째 보이는거에서 -1번째 글씨 밝게해주시고
+        $('.bx3 li').eq(3).find('div').css({
+            opacity : 1
+        })
+        // 6번째 보이는거에서 2번째 서서히 어둡게
+        $('.bx3 li').eq(5).css({
+            transition : '1s linear',
+            opacity : '.5'
+        })
+        $('.p2gage').css({
+            transition : 'none',
+            left : '-114%'
+        })
+        // 움직이고나서 프리펜드해주시고 다시 원위치 복귀 트랜지션0
+        setTimeout(()=>{
+            slide.prepend($('.bx3 li').last())
+            slide.css({
+                transition : "none",
+                left : '-156%'
+            })
+
+            // clearInterval()
+        },1000)
+        
+
+    }
+    function rclick(){
+        // 슬라이드 왼쪽으로 이동시켜주시고
+        slide.css({
+            transition : '1s linear',
+            left : '-195%' 
+        })
+        // 7번째 보이는거에서 3번째꺼 밝게해주시고
+        $('.bx3 li').eq(6).css({
+            opacity : 1
+        })
+        // 7번째 보이는거에서 3번째 글씨 밝게해주시고
+        $('.bx3 li').eq(6).find('div').css({
+            transition : '1s linear',
+            opacity : 1
+        })
+        $('.p2gage').css({
+            transition : 'none',
+            left : '-114%'
+        })
+        // 움직이고나서 어펜드해주시고 다시 원위치복귀 트랜지션0
+        setTimeout(()=>{
+            slide.append($('.bx3 li').eq(0))
+            slide.css({
+                transition : 'none',
+                left : '-156%'
+            })
+
+            // intervalClear()
+        },1000)
+    }
+
+
+    slidego()
+
+
+    let autoI
+    let autoT
+
+    let autoG;
+    let autoGt
+
+    function interval(){
+        console.log('인터벌')
+        autoI = setInterval(rclick,5000)
+    }
+    function ginterval(){
+        autoG = setInterval(gageOn,5000)
+    }
+
+    interval()
+    ginterval()
+    function intervalClear(){
+        console.log('인터벌짜르기')
+        clearInterval(autoI)
+        clearInterval(autoG)
+
+        clearTimeout(autoT)
+        clearTimeout(autoGt)
+
+        autoT = setTimeout(interval , 1000)
+        autoGt = setTimeout(ginterval , 1000)
+    }
+
+
+    //  게이지 씨
+     function gageOn(){
+        $('.p2gage').css({
+            transition : '3s linear',
+            left : '0'
+        })
+        setTimeout(()=>{
+            $('.p2gage').css({
+                transition : 'none',
+                left : '-114%'
+            })
+        },4900)
+     }
+
+     gageOn()
+
+     
+
+
+
+})

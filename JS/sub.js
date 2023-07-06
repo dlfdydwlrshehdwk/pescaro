@@ -6,13 +6,13 @@ const qsa = (x) => document.querySelectorAll(x);
 window.addEventListener('DOMContentLoaded',()=>{
 
 
-    const gg = document.querySelector('.bbx').clientHeight;
+    const gg = document.querySelector('.bbx').clientHeight + 3;
     const spg1bg = qs('.spage1bg');
     // 2페이지부터 랩핑박스
     const fromendpagewrap = qsa('.fromendpagewrap')
     // 변수 모음
     qs('.upbtn').style.zindex= 99999;
-    console.log(window.innerHeight - gg)
+    // console.log(window.innerHeight - gg) // 847
     // 윈도우에 스크롤을갈굼
     //  측정이안되었던이유 = 휠질하고 스크롤y를 초기화를 안해줘서 그런듯
     
@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded',()=>{
             let wa = event.wheelDelta;
             // 휠 내릴때 
             // 글자 사라지고 nav바 만 적용되있음
-            if(wh<450 && wa >=-110){
+            if(wh<=450 && wa >=-110){
                 console.log('안녕')
                 qs('.h2wrap').classList.add("on");
                 qs('.pwrap').classList.add("on");
@@ -34,7 +34,7 @@ window.addEventListener('DOMContentLoaded',()=>{
             } //if ///
             // 휠 올릴때 
             // 글자 사라지고 nav바 만 적용되있음
-            else if(wh>250 && wa <= 110){
+            else if(wh>=250 && wa <= 110){
                 console.log('?')
                 qs('.h2wrap').classList.remove("on");
                 qs('.pwrap').classList.remove("on");
@@ -53,7 +53,7 @@ window.addEventListener('DOMContentLoaded',()=>{
         wh = window.scrollY
         // console.log('hi')
         console.log(wh)
-        if(wh>window.innerHeight - gg){
+        if(wh>=window.innerHeight - gg){
             qs('.bbx').classList.remove('on');
             setTimeout(()=>{
                 qs('.bbx').style.position = 'fixed';
@@ -70,7 +70,7 @@ window.addEventListener('DOMContentLoaded',()=>{
                 qs('.bbx').classList.remove('fixed');
         }
 
-        if( wh > window.innerHeight - gg) {
+        if( wh >= window.innerHeight - gg) {
             qs('.h2wrap').classList.remove("on");
                 qs('.pwrap').classList.remove("on");
                 spg1bg.classList.remove('sm');
@@ -87,28 +87,6 @@ window.addEventListener('DOMContentLoaded',()=>{
                 })
         }
         
-        // bbx를 고정하고 해제하고싶은데 아이디어가
-        // console.log(hh)
-        // if(wh >750){
-        //     console.log('안냥')
-        //     qs('.bbx').classList.remove('on');
-        //     setTimeout(()=>{
-        //         qs('.bbx').style.position = 'fixed';
-        //         qs('.bbx').style.top = 0;
-        //         qs('.bbx').style.zindex = 9999;
-        //         qs('.bbx').classList.add('fixed');
-        //     },10)
-        // }
-        // else if(wh>150 ){
-        //     qs('.bbx').classList.add('on');
-        //     setTimeout(()=>{
-        //         qs('.bbx').style.position = 'absolute';
-        //         qs('.bbx').style.bottom = '-10%';
-        //         qs('.bbx').style.zindex = 9999;
-        //         qs('.bbx').style.top = '';
-        //         qs('.bbx').classList.remove('fixed');
-        //     },10)
-        // }
     }
 
     // 새로고침시 화면맨위로설정
@@ -130,7 +108,7 @@ window.addEventListener('DOMContentLoaded',()=>{
 
     // 밑에 박스
     const bbx = qs('.bbx');
-    console.log(bbx.clientHeight)
+    // .log(bbx.clientHeight) // 80
     
     // 위치값 이동용변수모음
     const he = qs('.bbx ul');
@@ -140,8 +118,8 @@ window.addEventListener('DOMContentLoaded',()=>{
     const ww = window.innerHeight;
     // 전체높이에서 ul크기 뺴서 거기로 가기
     const hh = ww - qq;
-    console.log(window.innerHeight)
-    console.log('qq:',qq,'ww',ww,'hh',hh)
+    // console.log(window.innerHeight) // 927
+    // console.log('qq:',qq,'ww',ww,'hh',hh) // 80 937 846
     
     // 서브페이지 휠 사용시 위한 1페이지 변수
     const spg1 = qs('.spage1')

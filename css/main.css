@@ -147,14 +147,20 @@ body .pob p{
 .bx3 li{
     position: relative;
     transition: left .3s, opacity .3s .3s ;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 .bx3 li:nth-child(4),
-.bx3 li:nth-child(7){
-    opacity: .2;
+.bx3 li:nth-child(1),
+.bx3 li:nth-child(8),
+.bx3 li:nth-child(7)
+{
+    opacity:0.5;
 }
 .bx3 li:nth-child(7) div{
-    opacity: 0;
+    opacity: 0.5;
+}
+.bx3 li:nth-child(8) div{
+    opacity: 0.5;
 }
 .bx3 li p{
     opacity: 1;
@@ -282,37 +288,6 @@ white-space: nowrap
     transform: translate(0,0);
     opacity: 1;
 }
-/* 흐르는 글자 키프레임 */
-/* @keyframes txt {
-    
-    0%{
-        left: 0%;
-    }
-    17.5%{
-        left: 0%;
-    }
-    25%{
-        left: -39%;
-    }
-    42.5%{
-        left: -39%;
-    }
-    50%{
-        left: -78%
-    }
-    67.5%{
-        left: -78%
-    }
-    75%{
-        left: -117%;
-    }
-    92.5%{
-        left: -117%;
-    }
-    100%{
-        left: -156%;
-    }
-} */
 /************************ 페이지 2 끝 ************************/
 
 /******************* 페이지 3 시작**********************/

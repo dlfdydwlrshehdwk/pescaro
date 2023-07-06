@@ -248,13 +248,14 @@ body *{
     margin: 0 auto;
     transition: opacity .5s .5s ease-in-out;
 }
-.sitemap.show .sitemap_main{
+.sitemap.show .sitemap_main {
     opacity: 1;
     position: fixed;
     top: 50%;
     transform: translateY(-50%);
     max-width: 1515px;
-    margin: 0 auto;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 .sitemap_top ul {
     display: flex;
