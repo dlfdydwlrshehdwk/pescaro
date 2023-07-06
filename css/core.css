@@ -363,8 +363,12 @@ body *{
 .ctbtn:hover .ctcircle{
     width: 200px;
 }
-.ctbtn:hover .ctcircle div{
+.ctbtn:hover .ctcircle div {
     opacity: 1;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
 }
 
 /* 위로가는버튼 */
@@ -460,6 +464,7 @@ body *{
     font-size: min(15px,1.4vw);
     margin-bottom: 1rem;
     color: #999;
+    cursor: pointer;
 }
 .ftdlbx{
     width: 62%;
